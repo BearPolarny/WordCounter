@@ -96,7 +96,7 @@ def results_to_path(path, words, all_words_number=-1, filtered_words_number=-1, 
         results = open(path, mode='w', encoding='UTF-8')
     else:
         print('Output file not found, creating new txt file')
-        results = open(path[:path.rfind('\\.')] + '.txt', mode='w', encoding='UTF-8')
+        results = open(path[:path.rfind('.')] + '.txt', mode='w', encoding='UTF-8')
 
     print('All words (with alphanumeric): ' + str(all_words_number) +
           '\nAll words (without alphanumeric): ' + str(filtered_words_number) +
