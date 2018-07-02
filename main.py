@@ -1,4 +1,5 @@
 import sys
+from _tkinter import TclError
 
 import WordCounter
 
@@ -23,4 +24,7 @@ for word in words:
     if word not in common:
         cloud_words[word] = words[word]
 
-WordCounter.to_cloud(cloud_words)
+try:
+    WordCounter.to_cloud(cloud_words)
+except TclError:
+    pass

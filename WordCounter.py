@@ -1,4 +1,5 @@
 import operator
+import os
 import re
 
 import matplotlib.pyplot as plt
@@ -40,9 +41,12 @@ def extract_text_from_path(path):
     text = 'pusty'
 
     if path[-3:] == 'txt':
-        file = open(path, mode='r', encoding='UTF-8')
-        file.seek(0, 0)
-        text = file.read()
+        try:
+            file = open(path, mode='r', encoding='UTF-8')
+            file.seek(0, 0)
+            text = file.read()
+        except FileNotFoundError:
+            print('Input file not found!')
     elif path[-3:] == 'pdf':
         raise NameError('PDF files are not implemented')
 
@@ -88,8 +92,12 @@ def results_to_path(path, words, all_words_number=-1, filtered_words_number=-1, 
 
     if to_sort:
         words = sort_words(words, descending)
+    if os.path.isfile(path):
+        results = open(path, mode='w', encoding='UTF-8')
+    else:
+        print('Output file not found, creating new txt file')
+        results = open(path[:path.rfind('\\.')] + '.txt', mode='w', encoding='UTF-8')
 
-    results = open(path, mode='w', encoding='UTF-8')
     print('All words (with alphanumeric): ' + str(all_words_number) +
           '\nAll words (without alphanumeric): ' + str(filtered_words_number) +
           '\nUnique words: ' + str(len(words)) +

@@ -3,7 +3,6 @@ All words (without alphanumeric): 132359
 Unique words: 24621
 Average word appearence: 5.38
 
-Word Tomaszewski doesn't occur in text
 
 
 
